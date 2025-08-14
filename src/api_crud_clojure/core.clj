@@ -1,6 +1,40 @@
 (ns api-crud-clojure.core
   (:require [io.pedestal.http :as http]
-            [io.pedestal.http.route :as route]))
+            [io.pedestal.http.route :as route]
+            [clojure.data.json :as json]
+            [clojure.java.io :as io]))
+
+def struct
+
+(def file-path "usuarios.json")
+
+;Crie uma struct passando pra ela todos os dados que voce quer passar para adicionar um usuario novo (EX: nome, email, senha, nacionalidade)
+
+;Crie uma funcao para adicionar usuarios recebendo esses dados da struct no body da requisicao.
+
+;Pesquise nas documentacoes do pedestal e do clojure como voce pode criar struct e atribuir valor ao body do json
+
+
+
+
+
+(defn ler-usuarios []
+  (if (.exists (io/file file-path))
+    (with-open [r (io/reader file-path)]
+      (json/read r :key-fn keyword))
+    []))
+
+(defn add-users []
+  )
+
+#_(defn salvar-usuarios [usuarios]
+  (with-open [w (io/writer file-path)]
+    (json/write usuarios w)))
+
+#_(defn adicionar-usuario [novo-usuario]
+  (let [usuarios (ler-usuarios)
+        usuarios-atualizados (conj usuarios novo-usuario)]
+    (salvar-usuarios usuarios-atualizados)))
 
 (defn funcao-hello
   [request]
@@ -13,15 +47,17 @@
   (println request)
   {:status 200
    :headers {"Content-Type" "application/json"}
-   :body {:username "Gustavo Maia"
-          :email "gustavo.maia@mmti.io"
-          :country "Brazil"
-          :city "SJP - PR"}})
+   :body (ler-usuarios)
+   })
+
+(defn add-users [new-user]
+  )
 
 (def routes
   (route/expand-routes
     #{["/hello" :get funcao-hello :route-name :hello-world]
-      ["/users" :post get-users :route-name :users]}))
+      ["/users" :get get-users :route-name :users]
+      }))
 
 (def service-map
   {::http/routes routes
