@@ -7,8 +7,12 @@
                  [io.pedestal/pedestal.service "0.5.10"]
                  [io.pedestal/pedestal.route "0.5.10"]
                  [io.pedestal/pedestal.jetty "0.5.10"]
+<<<<<<< HEAD
                  [cheshire "5.11.0"]
                  [org.clojure/data.json "2.5.0"]]
+=======
+                 [org.clojure/data.json "2.5.1"]]
+>>>>>>> 154a526 (read function/rout working)
   :main ^:skip-aot api-crud-clojure.core
   :target-path "target/%s"
   :profiles {:dev {:aliases {"run" ["trampoline" "run"]}

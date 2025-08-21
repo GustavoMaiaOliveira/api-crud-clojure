@@ -51,7 +51,11 @@
     <orderEntry type="library" name="Leiningen: org.clojure/core.match:0.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/core.memoize:0.5.9" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/core.specs.alpha:0.2.62" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" name="Leiningen: org.clojure/data.json:2.5.0" level="project" />
+=======
+    <orderEntry type="library" name="Leiningen: org.clojure/data.json:2.5.1" level="project" />
+>>>>>>> 154a526 (read function/rout working)
     <orderEntry type="library" name="Leiningen: org.clojure/data.priority-map:0.0.7" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/spec.alpha:0.3.218" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.analyzer.jvm:0.7.2" level="project" />

@@ -2,6 +2,7 @@
   (:require [io.pedestal.http :as http]
             [io.pedestal.http.route :as route]
             [clojure.data.json :as json]
+<<<<<<< HEAD
             [clojure.java.io :as io]))
 
 def struct
@@ -57,6 +58,21 @@ def struct
   (route/expand-routes
     #{["/hello" :get funcao-hello :route-name :hello-world]
       ["/users" :get get-users :route-name :users]
+=======
+            [api-crud-clojure.hello :as hello]
+            [users.read :as read]))
+
+(def routes
+  (route/expand-routes
+    #{["/hello"
+       :get hello/funcao-hello
+       :route-name :hello-world]
+
+      ["/users"
+       :get read/read-users
+       :route-name :users]
+
+>>>>>>> 154a526 (read function/rout working)
       }))
 
 (def service-map
@@ -80,3 +96,13 @@ def struct
 
 (defn -main [& args]
   (start))
+
+;(defn get-users
+;  [request]
+;  (println request)
+;  {:status 200
+;   :headers {"Content-Type" "application/json"}
+;   :body {:username "Gustavo Maia"
+;          :email "gustavo.maia@mmti.io"
+;          :country "Brazil"
+;          :city "SJP - PR"}})
