@@ -19,5 +19,5 @@
        :get http-in.users/get-all-users
        :route-name :get-all-users]
       ["/users"
-       :post (conj common-interceptors users.create/create-users)
+       :post common-interceptors users.create/add-user
        :route-name :create-users]}))

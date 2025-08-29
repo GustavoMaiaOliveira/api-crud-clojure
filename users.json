@@ -1,5 +1,1 @@
-{
-  "name" : "Teste1",
-  "email" : "teste@maia2.com",
-  "age" : "993"
-}
+{"usuarios":[{"id":1,"nome":"A","idade":20}],"users":[{"id":2,"nome":"Teste","idade":2},{"id":2,"nome":"Teste","idade":2},{"id":2,"nome":"Teste","idade":2},{"id":2,"nome":"Teste","idade":2},{"id":2,"nome":"Teste","idade":2}]}

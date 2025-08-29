@@ -3,8 +3,7 @@
             [io.pedestal.http :as http]
             [api-crud-clojure.diplomat.http-server :as diplomat.http-server]
             [io.pedestal.interceptor :as interceptor]
-            [io.pedestal.http.body-params :as body-params]
-            [cheshire.core :as json]))
+            [io.pedestal.http.body-params :as body-params]))
 
 (def users-db (atom []))
 
