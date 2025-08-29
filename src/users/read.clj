@@ -20,7 +20,6 @@
 ;   :headers {"Content-Type" "application/json"}
 ;   :body (get-users-in-off["/home/gustavo_maia/IdeaProjects/api-crud-clojure/users.json"])})
 
-
 ;(defn read-users
 ;  [file-path]
 ;  {:status 200
@@ -35,3 +34,13 @@
 ;  {:status 200
 ;   :headers {"Content-Type" "text/plain"}
 ;   :body "Hello World"})
+
+;(defn get-users
+;  [request]
+;  (println request)
+;  {:status 200
+;   :headers {"Content-Type" "application/json"}
+;   :body {:username "Gustavo Maia"
+;          :email "gustavo.maia@mmti.io"
+;          :country "Brazil"
+;          :city "SJP - PR"}})

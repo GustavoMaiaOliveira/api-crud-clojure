@@ -1,22 +1,5 @@
-[
-  {
-    "id": 1,
-    "name": "Maia",
-    "email": "maia@mm.com"
-  },
-  {
-    "id": 2,
-    "name": "Dias",
-    "email": "dias@mm.com"
-  },
-  {
-    "id": 3,
-    "name": "Darlan",
-    "email": "darlan@mm.com"
-  },
-  {
-    "id": 4,
-    "name": "Schmeller",
-    "email": "schmeller@mm.com"
-  }
-]
+{
+  "name" : "Teste1",
+  "email" : "teste@maia2.com",
+  "age" : "993"
+}

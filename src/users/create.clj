@@ -1,10 +1,30 @@
 (ns users.create
-  (:require [clojure.data.json :as json]))
+  (:require [cheshire.core :as json]))
 
-(def users-json-string (slurp "/home/gustavo_maia/IdeaProjects/api-crud-clojure/src/users/users.json"))
-(def users-data (json/read-str users-json-string :key-fn keyword))
-(def new-user {:id 4 :name "Schmeller" :email "schmeller@mm.com"})
-(def updated-users-data (conj users-data new-user))
-(def update-users-json-string (json/write-str updated-users-data))
+;(def file-path "/home/gustavo_maia/IdeaProjects/api-crud-clojure/users.json")
+;
+;(defn create-users [request]
+;  (let [body (slurp (:body request))
+;        new-user (json/parse-string body true)
+;        existing-users (if (.exists (clojure.java.io/file file-path))
+;                         (json/parse-string (slurp file-path) true)
+;                         [])
+;        updated-users (conj existing-users new-user)]
+;    (spit file-path (json/generate-string updated-users {:pretty true}))
+;    {:status 201
+;     :headers {"Content-Type" "application/json"}
+;     :body (json/generate-string {:message "Usuário criado com sucesso!"})}))
 
-(spit "/home/gustavo_maia/IdeaProjects/api-crud-clojure/src/users/users.json" update-users-json-string)
+(defn create-users [request]
+  (let [user (:json-params request)]
+    (spit "/home/gustavo_maia/IdeaProjects/api-crud-clojure/users.json" (json/generate-string user {:pretty true}))
+    {:status 201
+     :headers {"Content-Type" "application/json"}
+     :body (json/generate-string {:message "Usuário criado com sucesso!"
+                                  :user user})}))
+
+;TODO
+; - 1 criar endpoint post - DO
+; - Receber dados
+; - entender como salvar esses dados em um json ja existente
+; - retornar info do user criado - DO
