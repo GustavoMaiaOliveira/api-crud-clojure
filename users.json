@@ -1,5 +1,3 @@
-{
-  "name" : "Teste1",
-  "email" : "teste@maia2.com",
-  "age" : "993"
-}
+{"nome":"Maia","idade":"20"}
+{"nome":"Schmeller","idade":"26"}
+{"nome":"Dias","idade":"22"}
