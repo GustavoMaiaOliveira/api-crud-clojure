@@ -4,7 +4,9 @@
             [io.pedestal.http.route :as route]
             [api-crud-clojure.diplomat.http-in.api-version :as http-in.api-version]
             [api-crud-clojure.diplomat.http-in.users :as http-in.users]
-            [users.create :as users.create]))
+            [users.create :as users.create]
+            [users.delete :as users.delete]
+            ))
 
 (def common-interceptors
   [(body-params/body-params)
@@ -20,4 +22,8 @@
        :route-name :get-all-users]
       ["/users"
        :post (conj common-interceptors users.create/create-users)
-       :route-name :create-users]}))
+       :route-name :create-users]
+      ["/users"
+       :delete users.delete/delete-user
+       :route-name :delete-users]
+      }))
