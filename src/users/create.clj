@@ -23,3 +23,4 @@
 ; - Receber dados - DO
 ; - entender como salvar esses dados em um json ja existente - DO
 ; - retornar info do user criado - DO
+; - criar uuid

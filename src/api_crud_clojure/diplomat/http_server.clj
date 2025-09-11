@@ -6,6 +6,7 @@
             [api-crud-clojure.diplomat.http-in.users :as http-in.users]
             [users.create :as users.create]
             [users.delete :as users.delete]
+            [users.read :as users.read]
             ))
 
 (def common-interceptors
@@ -18,12 +19,15 @@
        :get http-in.api-version/api-version
        :route-name :api-version]
       ["/users"
-       :get http-in.users/get-all-users
+       :get users.read/read-users
        :route-name :get-all-users]
       ["/users"
        :post (conj common-interceptors users.create/create-users)
        :route-name :create-users]
-      ["/users"
-       :delete users.delete/delete-user
+      ["/users/:id"
+       :delete users.delete/delete-users-by-id
        :route-name :delete-users]
+      ["/users/:id"
+       :get users.read/read-users-by-id
+       :route-name :read-users-by-id]
       }))
