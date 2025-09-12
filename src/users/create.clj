@@ -10,14 +10,13 @@
                          (json/parse-string (slurp file-path) true)
                          [])
         updated-users (conj existing-users new-user)]
-    ;; grava o vetor inteiro (cria ou sobrescreve)
     (spit file-path (json/generate-string updated-users {:pretty true}))
-    ;; retorna o map de resposta HTTP
     {:status 201
      :headers {"Content-Type" "application/json"}
      :body (json/generate-string {:message "Usuário criado com sucesso!"
                                   :user new-user})}))
 
+pop assoc
 
 ;(ns users.create
 ;  (:require [cheshire.core :as json]

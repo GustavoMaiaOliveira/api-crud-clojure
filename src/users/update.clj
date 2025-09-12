@@ -4,19 +4,32 @@
             [clojure.java.io :as io]
             [users.read :as read]))
 
+
 (def file-path "/home/gustavo_maia/IdeaProjects/api-crud-clojure/users.json")
 
-(defn update-users-by-id [request]
+(defn update-user [request]
   (let [id (get-in request [:path-params :id])
-        users (read/get-users)
-        user (first (filter #(= (str (:id %)) id) users))]
-    (if user
-      (let [updated-users (remove #(= (str (:id %)) id) users)]
-        (spit file-path (jsonclojure/write-str updated-users :pretty true))
+        new-data (:json-params request)
+        existing-users (if (.exists (io/file file-path))
+                         (json/parse-string (slurp file-path) true)
+                         [])
+        id-num (try
+                 (Integer/parseInt id)
+                 (catch Exception _ id))
+        updated-users (mapv (fn [u]
+                              (if (= (:id u) id-num)
+                                (merge u new-data)
+                                u))
+                            existing-users)
+        user-updated (first (filter #(= (:id %) id-num) updated-users))]
+
+    (if user-updated
+      (do
+        (spit file-path (json/generate-string updated-users {:pretty true}))
         {:status 200
          :headers {"Content-Type" "application/json"}
-         :body {:message (str "Usuário com o id " id " deletado com sucesso")}})
+         :body (json/generate-string {:message "Usuário atualizado com sucesso!"
+                                      :user user-updated})})
       {:status 404
        :headers {"Content-Type" "application/json"}
-       :body {:error (str "Usuário com o id " id " não encontrado")}}
-      )))
+       :body (json/generate-string {:error (str "Usuário com id " id " não encontrado")})})))

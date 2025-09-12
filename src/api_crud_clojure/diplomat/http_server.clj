@@ -7,6 +7,7 @@
             [users.create :as users.create]
             [users.delete :as users.delete]
             [users.read :as users.read]
+            [users.update :as users.update]
             ))
 
 (def common-interceptors
@@ -30,4 +31,7 @@
       ["/users/:id"
        :get users.read/read-users-by-id
        :route-name :read-users-by-id]
+      ["/users/:id"
+       :put (conj common-interceptors users.update/update-user)
+       :route-name :update-user]
       }))
