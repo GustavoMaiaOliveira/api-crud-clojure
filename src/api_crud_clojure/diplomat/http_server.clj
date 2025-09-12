@@ -22,7 +22,7 @@
        :get users.read/read-users
        :route-name :get-all-users]
       ["/users"
-       :post (conj common-interceptors users.create/create-users)
+       :post (conj common-interceptors users.create/create-new-user)
        :route-name :create-users]
       ["/users/:id"
        :delete users.delete/delete-users-by-id
