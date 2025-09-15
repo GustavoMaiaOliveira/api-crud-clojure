@@ -1,22 +1,60 @@
-# teste-api
+<div align="center">
 
-A Clojure library designed to ... well, that part is up to you.
+  <img src="./.github/assets/logo.png" alt="Logo" height="200">
+  <h1 align="center"><strong>API Crud for Users</strong></h1>
+  <p align="center">
+	  This project is builded from i pratice my knowledge in HTTP Methods and Clojure.<br> I use in this project <b>Clojure</b> and external libs as <b>Pedestal, Cheshire</b>.
+  </p>
 
-## Usage
+</div>
 
-FIXME
+<br />
 
-## License
+  <!-- Badges -->
+<div align="center">
 
-Copyright © 2025 FIXME
+[![Clojure version][Clojure-badge]][clojure-install]
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
+</div>
 
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+# 🚀 Technologies
+
+This code source was developed with the following items:
+
+### 📦 Dependencies
+
+- [Clojure][clojure-install] - Clojure is a robust, practical, and fast programming language
+
+### 📄 Files
+
+- `.gitignore` - Ignore folders like node_modules
+- `project.clj` - Have the dependencies for the project
+
+### ⚡ Scripts
+
+- `lein run`: Run API.
+
+# 👨‍💻 How To Use
+
+click in **[Use this template]** OR
+
+To clone and run this application, you'll need [Git](https://git-scm.com), [Clojure](https://clojure.org/guides/install_clojure) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/GustavoMaiaOliveira/api-crud-clojure.git
+
+# Run project
+$ lein run
+```
+
+## Author
+
+| [<img src="https://avatars.githubusercontent.com/u/161539603?s=400&u=4e1355b2c475c870a92d5453f7cb32560478f40e&v=4"><br><sub>Gustavo Maia Oliveira</sub>](https://github.com/GustavoMaiaOliveira) |
+| :---------------------------------------------------------------------------------------------------------------------------------------: |
+|                                       [Linkedin](https://www.linkedin.com/in/gustavomaiaoliveira/)                                        |
+
+# Credits
+
+[clojure-install]: https://clojure.org/guides/install_clojure
+[clojure-badge]: https://img.shields.io/badge/Clojure-1.11-purple

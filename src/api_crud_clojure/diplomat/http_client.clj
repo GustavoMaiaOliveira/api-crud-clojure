@@ -1,12 +1,6 @@
 (ns api-crud-clojure.diplomat.http-client
-  (:require [clojure.data.json :as data.json]
-            [io.pedestal.http :as http]
-            [api-crud-clojure.diplomat.http-server :as diplomat.http-server]
-            [io.pedestal.interceptor :as interceptor]
-            [io.pedestal.http.body-params :as body-params]
-            [cheshire.core :as json]))
-
-(def users-db (atom []))
+  (:require [io.pedestal.http :as http]
+            [api-crud-clojure.diplomat.http-server :as diplomat.http-server]))
 
 (def service-map
   {:env :prod

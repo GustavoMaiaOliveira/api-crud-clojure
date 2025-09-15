@@ -1,29 +1,22 @@
 (ns api-crud-clojure.diplomat.http-server
-  (:require [io.pedestal.http :as http]
-            [io.pedestal.http.body-params :as body-params]
-            [io.pedestal.http.route :as route]
-            [api-crud-clojure.diplomat.http-in.api-version :as http-in.api-version]
-            [api-crud-clojure.diplomat.http-in.users :as http-in.users]
+  (:require [io.pedestal.http.route :as route]
             [users.create :as users.create]
             [users.delete :as users.delete]
             [users.read :as users.read]
             [users.update :as users.update]
-            ))
-
-(def common-interceptors
-  [(body-params/body-params)
-   http/json-body])
+            [api-crud-clojure.helpers.interceptors :as interceptors]
+            [api-crud-clojure.helpers.api-version :as api-version]))
 
 (def routes
   (route/expand-routes
     #{["/api-version"
-       :get http-in.api-version/api-version
+       :get api-version/api-version
        :route-name :api-version]
       ["/users"
        :get users.read/read-users
        :route-name :get-all-users]
       ["/users"
-       :post (conj common-interceptors users.create/create-new-user)
+       :post (conj interceptors/common-interceptors users.create/create-new-user)
        :route-name :create-users]
       ["/users/:id"
        :delete users.delete/delete-users-by-id
@@ -32,6 +25,5 @@
        :get users.read/read-users-by-id
        :route-name :read-users-by-id]
       ["/users/:id"
-       :put (conj common-interceptors users.update/update-user)
-       :route-name :update-user]
-      }))
+       :put (conj interceptors/common-interceptors users.update/update-users-by-id)
+       :route-name :update-user]}))
