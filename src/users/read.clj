@@ -1,12 +1,11 @@
 (ns users.read
   (:require [clojure.data.json :as json]
-            [clojure.java.io :as io]))
-
-(def file-path "/home/gustavo_maia/IdeaProjects/api-crud-clojure/users.json")
+            [clojure.java.io :as io]
+            [helpers.file-path :as file-path]))
 
 (defn get-users []
-  (if (.exists (io/file file-path))
-  (json/read-str (slurp file-path) :key-fn  keyword)
+  (if (.exists (io/file file-path/file-path))
+  (json/read-str (slurp file-path/file-path) :key-fn  keyword)
   []))
 
 (defn read-users [request]

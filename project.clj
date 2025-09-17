@@ -10,7 +10,7 @@
                  [cheshire "5.11.0"]
                  [org.clojure/data.json "2.5.0"]]
   :source-paths ["src"]
-  :main ^:skip-aot api-crud-clojure.diplomat.http-client
+  :main ^:skip-aot diplomat.http-client
   :target-path "target/%s"
   :profiles {:dev {:aliases {"run" ["trampoline" "run"]}
                    :dependencies [[ch.qos.logback/logback-classic "1.2.11"]]}})

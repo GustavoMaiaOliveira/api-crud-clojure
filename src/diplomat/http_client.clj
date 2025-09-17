@@ -1,7 +1,7 @@
-(ns api-crud-clojure.diplomat.http-client
+(ns diplomat.http-client
   (:require [clojure.data.json :as data.json]
             [io.pedestal.http :as http]
-            [api-crud-clojure.diplomat.http-server :as diplomat.http-server]
+            [diplomat.http-server :as diplomat.http-server]
             [io.pedestal.interceptor :as interceptor]
             [io.pedestal.http.body-params :as body-params]
             [cheshire.core :as json]))

@@ -2,18 +2,17 @@
   (:require [cheshire.core :as json]
             [clojure.data.json :as jsonclojure]
             [clojure.java.io :as io]
-            [users.read :as read]))
-
-(def file-path "/home/gustavo_maia/IdeaProjects/api-crud-clojure/users.json")
+            [users.read :as read]
+            [helpers.file-path :as file-path]))
 
 (defn delete-all-users [request]
   (let [params (:json-params request)
         nome (:nome params)
-        existing-users (if (.exists (io/file file-path))
-                         (json/parse-string (slurp file-path) true)
+        existing-users (if (.exists (io/file file-path/file-path))
+                         (json/parse-string (slurp file-path/file-path) true)
                           [])
         updated-users (remove #(= (:nome %) nome) existing-users)]
-    (spit file-path (json/generate-string updated-users {:pretty true}))
+    (spit file-path/file-path (json/generate-string updated-users {:pretty true}))
     {:status 200
      :headers {"Content-Type" "application/json"}
      :body (json/generate-string {:message (str "Usuario" nome "deletado com sucesso!")})}))
@@ -24,7 +23,7 @@
         user (first (filter #(= (str (:id %)) id) users))]
     (if user
       (let [updated-users (remove #(= (str (:id %)) id) users)]
-        (spit file-path (jsonclojure/write-str updated-users :pretty true))
+        (spit file-path/file-path (jsonclojure/write-str updated-users :pretty true))
       {:status 200
        :headers {"Content-Type" "application/json"}
        :body {:message (str "Usuário com o id " id " deletado com sucesso")}})

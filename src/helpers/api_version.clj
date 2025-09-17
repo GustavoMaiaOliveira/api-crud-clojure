@@ -1,4 +1,4 @@
-(ns api-crud-clojure.controller.api-version)
+(ns helpers.api-version)
 
 (defn api-version
   [request]

@@ -1,9 +1,8 @@
-(ns api-crud-clojure.diplomat.http-server
+(ns diplomat.http-server
   (:require [io.pedestal.http :as http]
             [io.pedestal.http.body-params :as body-params]
             [io.pedestal.http.route :as route]
-            [api-crud-clojure.diplomat.http-in.api-version :as http-in.api-version]
-            [api-crud-clojure.diplomat.http-in.users :as http-in.users]
+            [helpers.api-version :as api-version]
             [users.create :as users.create]
             [users.delete :as users.delete]
             [users.read :as users.read]
@@ -16,7 +15,7 @@
 (def routes
   (route/expand-routes
     #{["/api-version"
-       :get http-in.api-version/api-version
+       :get api-version/api-version
        :route-name :api-version]
       ["/users"
        :get users.read/read-users
@@ -30,4 +29,7 @@
       ["/users/:id"
        :get users.read/read-users-by-id
        :route-name :read-users-by-id]
+      ["/users/:id"
+       :put users.update/update-users-by-id
+       :route-name :update-users-by-id]
       }))
