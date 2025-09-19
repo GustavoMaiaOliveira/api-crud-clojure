@@ -1,6 +1,5 @@
 (ns users.test)
 
-(def teste {:a "teste" :b 2 :c 3 :d 5})
+(def teste {:id 14, :name "Nina", :age 21})
 
-
-(print(assoc teste :a "zap"))
+(print(dissoc teste :id))

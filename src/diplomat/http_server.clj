@@ -19,7 +19,7 @@
        :get api-version/api-version
        :route-name :api-version]
       ["/users"
-       :post (conj common-interceptors users.create/create-new-user)
+       :post users.create/create-new-user
        :route-name :create-users]
       ["/users"
        :get users.read/read-users
