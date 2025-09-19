@@ -6,6 +6,7 @@
             [users.create :as users.create]
             [users.delete :as users.delete]
             [users.read :as users.read]
+            [users.update :as users.update]
             ))
 
 (def common-interceptors
@@ -18,18 +19,17 @@
        :get api-version/api-version
        :route-name :api-version]
       ["/users"
-       :get users.read/read-users
-       :route-name :get-all-users]
-      ["/users"
        :post (conj common-interceptors users.create/create-new-user)
        :route-name :create-users]
-      ["/users/:id"
-       :delete users.delete/delete-users-by-id
-       :route-name :delete-users]
+      ["/users"
+       :get users.read/read-users
+       :route-name :get-all-users]
       ["/users/:id"
        :get users.read/read-users-by-id
        :route-name :read-users-by-id]
       ["/users/:id"
-       :put users.update/update-users-by-id
+       :put (conj common-interceptors users.update/update-users-by-id)
        :route-name :update-users-by-id]
-      }))
+      ["/users/:id"
+       :delete users.delete/delete-users-by-id
+       :route-name :delete-users]}))

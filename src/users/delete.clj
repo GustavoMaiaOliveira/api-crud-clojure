@@ -1,21 +1,7 @@
 (ns users.delete
-  (:require [cheshire.core :as json]
-            [clojure.data.json :as jsonclojure]
-            [clojure.java.io :as io]
+  (:require [clojure.data.json :as jsonclojure]
             [users.read :as read]
             [helpers.file-path :as file-path]))
-
-(defn delete-all-users [request]
-  (let [params (:json-params request)
-        nome (:nome params)
-        existing-users (if (.exists (io/file file-path/file-path))
-                         (json/parse-string (slurp file-path/file-path) true)
-                          [])
-        updated-users (remove #(= (:nome %) nome) existing-users)]
-    (spit file-path/file-path (json/generate-string updated-users {:pretty true}))
-    {:status 200
-     :headers {"Content-Type" "application/json"}
-     :body (json/generate-string {:message (str "Usuario" nome "deletado com sucesso!")})}))
 
 (defn delete-users-by-id [request]
   (let [id (get-in request [:path-params :id])
