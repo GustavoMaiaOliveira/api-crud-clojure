@@ -13,7 +13,7 @@
 ;(-> teste
 ;    (dissoc :age))
 
-(def n {:name})
+(if (contains? teste :id)
+  (println "vdd")
+  (println "mentira"))
 
-(contains? n
-           teste)

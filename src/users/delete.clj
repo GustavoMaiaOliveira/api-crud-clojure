@@ -1,5 +1,5 @@
 (ns users.delete
-  (:require [clojure.data.json :as jsonclojure]
+  (:require [clojure.data.json :as json]
             [users.read :as read]
             [helpers.file-path :as file-path]))
 
@@ -9,7 +9,7 @@
         user (first (filter #(= (str (:id %)) id) users))]
     (if user
       (let [updated-users (remove #(= (str (:id %)) id) users)]
-        (spit file-path/file-path (jsonclojure/write-str updated-users :pretty true))
+        (spit file-path/file-path (json/write-str updated-users :pretty true))
       {:status 200
        :headers {"Content-Type" "application/json"}
        :body {:message (str "Usuário com o id " id " deletado com sucesso")}})
