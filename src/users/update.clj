@@ -48,13 +48,11 @@
   (json/read-json (slurp "/home/gustavo_maia/IdeaProjects/api-crud-clojure/users-backup.json")))
 
 (defn get-data-by-id [id]
-  (println "get-data-by-id: " id)
+  ;(println "get-data-by-id: " id)
   (first (filter #(= (num (:id %)) id)
                  (json/read-json (slurp "/home/gustavo_maia/IdeaProjects/api-crud-clojure/users-backup.json")))))
 
 (get-data-by-id 19)
-
-
 
 (defn update-users-by-id
   [request]
@@ -62,26 +60,44 @@
         body (:json-params request)
         user (get-data-by-id (read-string id))
         new-age (:age body)
-        old-age (:age (get-data-by-id id))]
+        old-age (:age (get-data-by-id (read-string id)))
+        id-user (:age (get-data-by-id (read-string id)))]
 
-    (println "tipo do id do rapaz:" (type id))
-    (println "tipo do numero do rapaz:" (type 19))
-    (println "tipo da string rapaz:" (type "id"))
-    (println "USER sem assoc" (get-data-by-id (read-string id)))
+    ;(println "new")
+    ;(println new-age)
+    ;(println "old")
+    ;(println old-age)
+    ;(println "with dissoc")
+    ;(println (dissoc user :age))
+    ;(println "with assoc")
+    ;(println (assoc user :age 99))
+    ;(println "user again")
+    ;(println user)
+    ;(println "----------")
+    (println "passei aqui 1")
 
-    (if (= (:id user) id)
-      (-> user
-          (dissoc :age)
-          (assoc :age new-age)
-          println)
+    (contains? user :id)
+    (->
+      (println "final test with dissoc")
+      (println (dissoc user :age))
+      (println "final test with assoc")
+      (println (assoc user :age new-age)))
 
-      (print "Voce me chamou do que????"))
+    :else (print "Falha ao passar pelo teste")
+    ;)
+
+    ;(if #(= (:id user) id)
+    ;  (dissoc user :age)
+    ;(println "testando")
+    ;(println user)
+    ;  (-> user
+    ;      (println "User: /n")
+    ;      (println user)
+    ;      (get-in user [:name]))
 
     {:status  200
      :headers {"Content-Type" "application/json"}
      :body    {:message (str "Retorno: " (:age user))}}))
-
-
 
 
 
