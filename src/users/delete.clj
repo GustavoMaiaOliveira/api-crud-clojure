@@ -15,5 +15,4 @@
        :body {:message (str "Usuário com o id " id " deletado com sucesso")}})
       {:status 404
        :headers {"Content-Type" "application/json"}
-       :body {:error (str "Usuário com o id " id " não encontrado")}}
-      )))
+       :body {:error (str "Usuário com o id " id " não encontrado")}})))

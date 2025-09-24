@@ -13,7 +13,16 @@
 ;(-> teste
 ;    (dissoc :age))
 
-(if (contains? teste :id)
-  (println "vdd")
-  (println "mentira"))
+(defn zapzap
+  []
+  (when true(contains? teste :ids)
+  (->
+    (println "1")
+    (println "2")
+    (println "3")
+    (println "4"))
+            :else
+  (println "n sei")))
 
+
+(zapzap)
