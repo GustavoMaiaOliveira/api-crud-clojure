@@ -6,13 +6,6 @@
 
 (assoc teste :age 30)
 
-;(print(dissoc teste :id))
-;
-;(type (read-string "15"))
-;
-;(-> teste
-;    (dissoc :age))
-
 (defn zapzap
   []
   (when true(contains? teste :ids)
@@ -26,3 +19,8 @@
 
 
 (zapzap)
+
+(do
+  (println "log"
+          (+ 1 1)
+           (+ 1 1)))

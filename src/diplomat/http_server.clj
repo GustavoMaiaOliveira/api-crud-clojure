@@ -6,8 +6,7 @@
             [users.create :as users.create]
             [users.delete :as users.delete]
             [users.read :as users.read]
-            [users.update :as users.update]
-            ))
+            [users.update :as users.update]))
 
 (def common-interceptors
   [(body-params/body-params)
@@ -19,7 +18,8 @@
        :get api-version/api-version
        :route-name :api-version]
       ["/users"
-       :post users.create/create-new-user
+       :post (conj common-interceptors
+               users.create/create-new-user)
        :route-name :create-users]
       ["/users"
        :get users.read/read-users
