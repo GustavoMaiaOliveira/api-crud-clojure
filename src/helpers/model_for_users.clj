@@ -1,45 +1,36 @@
 (ns helpers.model-for-users
   (:require [schema.core :as s]))
 
-(s/defschema user-model
-  {:id s/Num
-   :user s/Str
-   :age s/Num})
-
-(def new-user
-  {
-   :id 11,
-   :user "Kevin",
-   :age 32
-   })
-
-;(when (s/validate user-model new-user) true (println "I'm passing her"))
-
-(s/check user-model new-user)
-
-;(if (= (s/check user-model new-user) nil)
+;(s/defschema user-model-keywords
+;  {:id s/Num
+;   :user s/Str
+;   :age s/Num})
+;
+;(def new-user-keywords
+;  {
+;   :id 11,
+;   :user "Kevin",
+;   :age 32
+;   })
+;
+;(s/check user-model-keywords new-user-keywords)
+;
+;(if (= (s/check user-model-keywords new-user-keywords) nil)
+;  (println "Dado correto!")
+;  (println "Dado incorreto!"))
+;
+;(s/check user-model-keywords new-user-keywords)
+;
+;(if (= (s/check user-model-keywords new-user-keywords) nil)
 ;  (println "Dado correto!")
 ;  (println "Dado incorreto!"))
 
-(if (= (s/check user-model new-user) nil)
-  (println "Dado correto!")
-  (println "Dado incorreto!"))
-
-;(println "I'm passing her")
-
-;(s/validate (s/maybe s/Keyword) :a)
-;(s/validate (s/maybe s/Keyword) nil)
+;(s/defschema user-model-keyword-age
+;  {:age s/Num})
 ;
-;(println "receba")
+;(def new-user-keyword-age
+;  {:age 32})
 ;
-;(s/validate
-;  {:some-var3
-;   (s/conditional
-;     #(= "string" (get-in % ["mytype1" "type"]))
-;     {s/Str s/Any}
-;     )}
-;  {:some-var3 {"mytype1" {"type" "string"}}})
-;
-;(if (malli.core/validate :int 1) :yep :nope)
-;
-;()
+;(if (= (s/check user-model-keyword-age new-user-keyword-age) nil)
+;  (println "Dado correto!")
+;  (println "Dado incorreto!"))

@@ -1,29 +1,45 @@
 (ns users.update
   (:require [clojure.data.json :as json]
-            [helpers.file-path :as file-path]))
+            [helpers.file-path :as file-path]
+            [schema.core :as s]
+            ))
 
-(defn get-data-by-id [id]
-  (first (filter #(= (num (:id %)) id)
-                 (json/read-json (slurp "/home/gustavo_maia/IdeaProjects/api-crud-clojure/users-backup.json")))))
+(defn get-all []
+  (json/read-json (slurp file-path/file-path)))
 
-(defn update-users-by-id
-  [request]
-  (let [id (get-in request [:path-params :id])
+(defn get-user [id]
+  (first (filter #(= (:id %) (read-string id)) (get-all))))
+
+(s/defschema model-age
+  {:age s/Num})
+
+(def user-age
+  {:age 55})
+
+(get-user "10")
+
+(s/defschema user-model-keywords
+  {:age s/Num})
+
+(if (= (s/check user-model-keywords (get-user "10")) nil)
+  (println "teste1")
+  (println "teste2"))
+
+(defn update-users-by-id [request]
+  (let [all-users (get-all)
+        user (get-user (get-in request [:path-params :id]))
         body (:json-params request)
-        user (get-data-by-id (read-string id))
         new-age (:age body)
-        id-user (:age (get-data-by-id (read-string id)))]
-
-    (contains? user :id)
-    (->
-      (println "final test with dissoc")
-      (println (dissoc user :age))
-      (println "final test with assoc")
-      (println (assoc user :age new-age))
-      (json/write-str file-path/file-path))
-
-    :else (print "Falha ao passar pelo teste")
-
+        old-age (:age user)
+        name (:name user)
+        user-id (:id user)
+        user-updated (assoc user :age (:age (:json-params request)))
+        without-old (remove #(= (:id %) (:id user)) all-users)
+        updated-list (conj (vec without-old) user-updated)]
+    (println "maça")
+    (println request)
+    (spit file-path/file-path
+          (json/write-str updated-list))
     {:status  200
      :headers {"Content-Type" "application/json"}
-     :body    {:message (str "Retorno: " (:age user))}}))
+     :body    {:message (str "A idade do usuário " name " com o id " user-id " foi alterado de " old-age " anos, para " new-age " anos com sucesso!")}}))
