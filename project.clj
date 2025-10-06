@@ -8,7 +8,8 @@
                  [io.pedestal/pedestal.route "0.5.10"]
                  [io.pedestal/pedestal.jetty "0.5.10"]
                  [cheshire "5.11.0"]
-                 [org.clojure/data.json "2.5.0"]]
+                 [org.clojure/data.json "2.5.0"]
+                 [prismatic/schema "1.4.1"]]
   :source-paths ["src"]
   :main ^:skip-aot diplomat.http-client
   :target-path "target/%s"
